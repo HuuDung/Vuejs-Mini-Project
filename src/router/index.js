@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import HelloWorld from "@/components/HelloWorld";
 
 import userRouter from "./user";
 import authRouter from "./auth";
@@ -12,8 +11,8 @@ const router = new Router({
   routes: [
     {
       path: "/",
-      name: "HelloWorld",
-      component: HelloWorld
+      name: "home",
+      component: () => import("../components/Home")
     },
     ...authRouter,
     ...userRouter
@@ -21,17 +20,17 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/register', '/home'];
+  const publicPages = ["/login", "/signup", "/"];
   const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user');
+  const loggedIn = localStorage.getItem("user");
 
   // trying to access a restricted page + not logged in
   // redirect to login page
   if (authRequired && !loggedIn) {
-    next('/login');
+    next("/login");
   } else {
     next();
   }
 });
 
-export default router
+export default router;
