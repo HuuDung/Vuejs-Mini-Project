@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>HomePage</h1>
+    <b-alert show>Default Alert</b-alert>
     <a v-if="logged" @click.prevent="logOut"><button>Logout</button></a>
     <a v-else @click.prevent="login"><button>Login</button></a>
   </div>
