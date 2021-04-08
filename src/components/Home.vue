@@ -1,8 +1,6 @@
 <template>
-  <div class="home">
+  <div class="home text-center">
     <h1>HomePage</h1>
-    <a v-if="logged" @click.prevent="logOut"><button>Logout</button></a>
-    <a v-else @click.prevent="login"><button>Login</button></a>
   </div>
 </template>
 
