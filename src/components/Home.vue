@@ -1,5 +1,5 @@
 <template>
-  <div class="home text-center">
+  <div class="text-center">
     <h1>HomePage</h1>
   </div>
 </template>
@@ -7,6 +7,8 @@
 <script>
 export default {
   name: "Home",
+  components: {
+  },
   data() {
     return {
       logged: false,
@@ -29,6 +31,7 @@ export default {
       this.$store.dispatch("auth/logout");
       window.location.reload();
     },
+
   },
 };
 </script>
