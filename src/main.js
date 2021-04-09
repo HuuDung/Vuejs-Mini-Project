@@ -15,8 +15,11 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
-Vue.config.productionTip = false
+//Ckeditor5
+import CKEditor from '@ckeditor/ckeditor5-vue2';
+Vue.use( CKEditor );
 
+Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
