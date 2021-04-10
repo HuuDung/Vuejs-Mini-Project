@@ -1,5 +1,6 @@
 <template>
   <b-modal
+    scrollable
     :id="id"
     :size="size"
     :header-bg-variant="headerBgVariant"
@@ -16,19 +17,120 @@
 
     <template #default>
       <div>
-        <p>手順</p>
-        <ckeditor
-          :editor="editor"
-          v-model="recipe.process"
-          :config="editorConfig"
-          tag-name="textarea"
-        ></ckeditor>
+        <b-form-group
+          label-cols-sm="4"
+          label-cols-lg="3"
+          content-cols-sm
+          label-align="center"
+          content-cols-lg="9"
+          label="タイトル"
+          label-for="recipe-title"
+        >
+          <b-form-input id="recipe-title" v-model="recipe.title"></b-form-input>
+        </b-form-group>
+      </div>
+      <div>
+        <b-form-group
+          label-cols-sm="4"
+          label-cols-lg="3"
+          content-cols-sm
+          label-align="center"
+          content-cols-lg="9"
+          label="料理名"
+          label-for="recipe-name"
+        >
+          <b-form-input id="recipe-name" v-model="recipe.name"></b-form-input>
+        </b-form-group>
+      </div>
+      <div>
+        <b-form-group
+          label-cols-sm="4"
+          label-cols-lg="3"
+          content-cols-sm
+          label-align="center"
+          content-cols-lg="9"
+          label="材料"
+          label-for="recipe-food"
+        >
+          <ckeditor
+            :editor="editor"
+            v-model="recipe.foods"
+            :config="editorConfig"
+            tag-name="textarea"
+          ></ckeditor>
+        </b-form-group>
+      </div>
+      <div>
+        <b-form-group
+          label-cols-sm="4"
+          label-cols-lg="3"
+          content-cols-sm
+          label-align="center"
+          content-cols-lg="9"
+          label="手順"
+          label-for="recipe-process"
+        >
+          <ckeditor
+            :editor="editor"
+            v-model="recipe.process"
+            :config="editorConfig"
+            tag-name="textarea"
+          ></ckeditor>
+        </b-form-group>
+      </div>
+      <div>
+        <b-form-group
+          label-cols-sm="4"
+          label-cols-lg="3"
+          content-cols-sm
+          label-align="center"
+          content-cols-lg="9"
+          label="調味料"
+          label-for="recipe-spice"
+        >
+          <b-form-input id="recipe-spice" v-model="recipe.spice"></b-form-input>
+        </b-form-group>
+      </div>
+      <div>
+        <b-form-group
+          label-cols-sm="4"
+          label-cols-lg="3"
+          content-cols-sm
+          label-align="center"
+          content-cols-lg="9"
+          label="何人前"
+          label-for="recipe-servings"
+        >
+          <b-form-input
+            id="recipe-servings"
+            type="number"
+            min="0"
+            v-model="recipe.servings"
+          ></b-form-input>
+        </b-form-group>
+      </div>
+      <div>
+        <b-form-group
+          label-cols-sm="4"
+          label-cols-lg="3"
+          content-cols-sm
+          label-align="center"
+          content-cols-lg="9"
+          label="所要時間"
+          label-for="recipe-time"
+        >
+          <b-form-input
+            id="recipe-time"
+            type="time"
+            v-model="recipe.time"
+          ></b-form-input>
+        </b-form-group>
       </div>
     </template>
 
-    <template #modal-footer="{ cancel }">
+    <template #modal-footer>
       <b-button variant="success" @click="confirmModal()"> 追加 </b-button>
-      <b-button variant="danger" @click="cancel()"> キャンセル </b-button>
+      <b-button variant="danger" @click="cancelModal()"> キャンセル </b-button>
     </template>
   </b-modal>
 </template>
@@ -71,7 +173,7 @@ export default {
       type: String,
       required: true,
     },
-    recipe: {
+    recipeData: {
       type: Object,
     },
   },
@@ -82,11 +184,24 @@ export default {
         // The configuration of the editor.
         toolbar: ["bold", "italic", "|", "bulletedList", "numberedList"],
       },
+      recipe: {},
     };
   },
+  computed: {
+    fetchRecipe() {
+      this.recipe = this.recipeData;
+    },
+  },
+  updated() {
+    this.fetchRecipe();
+  },
   methods: {
-    confirmModal(a) {
+    confirmModal() {
       this.$emit("confirm-modal", this.recipe);
+      this.$bvModal.hide(this.id);
+    },
+    cancelModal() {
+      this.recipe = this.recipeData;
       this.$bvModal.hide(this.id);
     },
   },

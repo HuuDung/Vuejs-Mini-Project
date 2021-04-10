@@ -5,7 +5,7 @@
     <modal-recipe
       id="modal-recipe-create"
       title="レシピ追加"
-      :recipe="recipe"
+      :recipe-data="recipe"
       @confirm-modal="confirmModal"
     ></modal-recipe>
     <template>
