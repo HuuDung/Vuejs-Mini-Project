@@ -23,18 +23,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-      logged: false,
-    };
-  },
-  computed: {
-    loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
-    },
-  },
-  created() {
-    this.logged = this.loggedIn;
+  props:{
+    logged: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     login() {

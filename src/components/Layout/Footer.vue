@@ -1,9 +1,5 @@
 <template>
-  <div class="footer bg-info text-white">
-    <p class="text-center">
-      Copyright &copy 2021, ICT推進グループ. All Rights Reserved.
-    </p>
-  </div>
+  
 </template>
 <script>
 export default {

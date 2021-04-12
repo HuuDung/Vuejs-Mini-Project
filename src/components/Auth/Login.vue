@@ -57,7 +57,6 @@ export default {
   },
   computed: {
     loggedIn() {
-      console.log(this.$store.state.auth.status.loggedIn);
       return this.$store.state.auth.status.loggedIn;
     },
   },
@@ -74,8 +73,6 @@ export default {
         this.$store.dispatch("auth/login", this.user).then(
           () => {
             console.log("login successed");
-            console.log(this.$store.state);
-
             this.$router.push("/");
           },
           (error) => {

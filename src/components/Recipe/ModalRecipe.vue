@@ -88,7 +88,7 @@
           label="調味料"
           label-for="recipe-spice"
         >
-          <b-form-input id="recipe-spice" v-model="recipe.spice"></b-form-input>
+          <b-form-input id="recipe-spice" v-model="recipe.spices"></b-form-input>
         </b-form-group>
       </div>
       <div>

@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="d-flex flex-column">
-    <header-nav></header-nav>
+  <div id="app">
+    <header-nav :logged="logged"></header-nav>
     <router-view></router-view>
     <footer-nav></footer-nav>
   </div>
@@ -12,8 +12,23 @@ export default {
   name: "App",
   components: {
     HeaderNav,
-    FooterNav
+    FooterNav,
   },
-  methods: {},
+  data() {
+    return {
+      logged: false,
+    };
+  },
+  created() {
+    this.loggedIn();
+  },
+  updated() {
+    this.loggedIn();
+  },
+  methods: {
+    loggedIn() {
+      this.logged = this.$store.state.auth.status.loggedIn;
+    },
+  },
 };
 </script>

@@ -10,7 +10,7 @@
 </template>
 <script>
 import UserDataService from "../../services/UserDataService";
-import HelloWorld from '../HelloWorld.vue';
+import HelloWorld from "../HelloWorld.vue";
 
 export default {
   components: { HelloWorld },
