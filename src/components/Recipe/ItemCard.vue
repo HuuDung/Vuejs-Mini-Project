@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-4">
+  <div class="mb-4 even">
     <b-card
       img-src="https://placekitten.com/300/300"
       img-alt="Card recipe item image"
@@ -66,6 +66,6 @@ export default {
   padding: 10px;
 }
 .even {
-    padding-left: 10px;
+    padding-left: 0.5rem;
 }
 </style>
