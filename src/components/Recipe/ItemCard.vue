@@ -1,15 +1,9 @@
 <template>
-  <div class="mb-4 even">
-    <b-card
-      img-src="https://placekitten.com/300/300"
-      img-alt="Card recipe item image"
-      img-left
-      class="mb-1"
-      border-variant="info"
-    >
-      <b-card-header>
+  <b-col md="6">
+    <b-card class="mb-3 line-break" border-variant="info">
+      <b-card-title>
         <h4>{{ recipe.title || "" }}</h4>
-      </b-card-header>
+      </b-card-title>
       <b-card-text class="mt-4">
         <div>
           <label for="" class="font-weight-bold">料理名:</label>
@@ -32,14 +26,14 @@
           <label for="">{{ recipe.time }}</label>
         </div>
       </b-card-text>
-      <b-card-footer class="text-center">
+      <b-card-footer class="text-center bg-white">
         <b-button variant="outline-primary" class="mr-4" size="xl"
           >編集</b-button
         >
         <b-button variant="outline-danger">削除</b-button>
       </b-card-footer>
     </b-card>
-  </div>
+  </b-col>
 </template>
 <script>
 export default {
@@ -63,9 +57,14 @@ export default {
   padding-bottom: 0rem;
 }
 .card img {
-  padding: 10px;
+  padding: 0.5rem;
+  max-width: 300px;
+  max-height: 300px;
 }
-.even {
-    padding-left: 0.5rem;
+.line-break {
+  line-break: anywhere;
+}
+.card {
+  height: 400px;
 }
 </style>

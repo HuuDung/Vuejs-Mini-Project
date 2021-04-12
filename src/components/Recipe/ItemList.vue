@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-card-group>
+    <b-row>
       <item-card
         v-for="recipe in recipes"
         :recipe="recipe"
         :key="recipe.id"
       ></item-card>
-    </b-card-group>
+    </b-row>
   </div>
 </template>
 <script>
@@ -21,7 +21,7 @@ export default {
         {
           id: 1,
           title: "タイトル",
-          name: "料理名",
+          name: "料理dasfasdfasdfasdadfdsafasdfasdfasdfa",
           foods: "材料",
           spices: "調味料",
           servings: "何人前",
