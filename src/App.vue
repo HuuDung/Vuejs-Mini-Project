@@ -32,3 +32,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+ #app {
+   padding-bottom: 40px;
+ }
+</style>
