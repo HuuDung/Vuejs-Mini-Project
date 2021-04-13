@@ -32,8 +32,21 @@
           <label for="">{{ recipe.time }}</label>
         </div>
       </b-card-text>
+      <div class="heart-like" v-if="!recipe.myself">
+        <b-icon
+          icon="heart-fill"
+          v-if="recipe.liked"
+          @click="recipe.liked = !recipe.liked"
+        ></b-icon>
+        <b-icon
+          icon="heart"
+          v-else
+          @click="recipe.liked = !recipe.liked"
+        ></b-icon>
+      </div>
     </b-card>
     <div class="text-center mb-4">
+      <b-button variant="outline-success" class="mr-4">表示</b-button>
       <b-button variant="outline-primary" class="mr-4" size="xl">編集</b-button>
       <b-button variant="outline-danger">削除</b-button>
     </div>
@@ -62,9 +75,7 @@ export default {
 }
 .card img {
   margin: auto;
-  padding: 0.5rem;
   max-height: 200px;
-  max-width: 200px;
 }
 .line-break {
   line-break: anywhere;
@@ -72,5 +83,12 @@ export default {
 .card {
   height: 500px;
   overflow: auto;
+}
+.heart-like {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.75rem;
+  font-size: 2rem;
+  color:red;
 }
 </style>

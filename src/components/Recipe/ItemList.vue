@@ -26,6 +26,8 @@ export default {
           spices: "調味料",
           servings: "何人前",
           time: "所要時間",
+          liked: true,
+          myself: false,
         },
         {
           id: 2,
@@ -35,6 +37,8 @@ export default {
           spices: "調味料",
           servings: "何人前",
           time: "所要時間",
+          liked: false,
+          myself: true,
         },
         {
           id: 3,
@@ -44,6 +48,8 @@ export default {
           spices: "調味料",
           servings: "何人前",
           time: "所要時間",
+          liked: false,
+          myself: true,
         },
         {
           id: 4,
@@ -53,6 +59,8 @@ export default {
           spices: "調味料",
           servings: "何人前",
           time: "所要時間",
+          liked: true,
+          myself: true,
         },
         {
           id: 5,
@@ -62,6 +70,8 @@ export default {
           spices: "調味料",
           servings: "何人前",
           time: "所要時間",
+          liked: false,
+          myself: true,
         },
         {
           id: 6,
@@ -71,6 +81,8 @@ export default {
           spices: "調味料",
           servings: "何人前",
           time: "所要時間",
+          liked: true,
+          myself: true,
         },
       ],
     };
