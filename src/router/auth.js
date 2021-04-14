@@ -1,12 +1,12 @@
 export default [
     {
-      path: "/login",
-      name: "login",
-      component: () => import("../components/Auth/Login")
+        path: '/login',
+        name: 'login',
+        component: () => import('../components/Auth/Login'),
     },
     {
-      path: "/signup",
-      name: "signup",
-      component: () => import("../components/Auth/Register")
-    }
-  ];
+        path: '/signup',
+        name: 'signup',
+        component: () => import('../components/Auth/Register'),
+    },
+];
