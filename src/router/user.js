@@ -6,7 +6,7 @@ export default [
     },
     {
         path: '/mypage',
-        name: 'mypage',
+        name: 'my-page',
         component: () => import('../components/User/MyPage'),
     },
 ];

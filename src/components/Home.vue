@@ -1,12 +1,12 @@
 <template>
-  <div class="container text-center">
-    <h1>トップページ</h1>
-  </div>
+    <div class="container text-center">
+        <h1>トップページ</h1>
+    </div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+    name: 'Home',
 };
 </script>
 
