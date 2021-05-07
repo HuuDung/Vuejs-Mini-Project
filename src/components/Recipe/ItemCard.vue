@@ -43,7 +43,9 @@
         </b-card>
         <div class="text-center mb-4">
             <b-button variant="outline-success" class="mr-4">表示</b-button>
-            <b-button variant="outline-primary" class="mr-4" size="xl">編集</b-button>
+            <b-button variant="outline-primary" class="mr-4" size="xl" @click="getRecipeData"
+                >編集</b-button
+            >
             <b-button variant="outline-danger">削除</b-button>
         </div>
     </b-col>
@@ -57,6 +59,11 @@ export default {
     },
     data() {
         return {};
+    },
+    methods: {
+        getRecipeData() {
+            this.$emit('get-recipe-data', this.recipe);
+        },
     },
 };
 </script>

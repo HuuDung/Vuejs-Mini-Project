@@ -8,11 +8,11 @@
             />
             <form name="form" @submit.prevent="handleLogin">
                 <div class="form-group">
-                    <label for="username">Email</label>
+                    <label for="username">メール</label>
                     <input v-model="user.email" type="text" class="form-control" name="email" />
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">パスワード</label>
                     <input
                         v-model="user.password"
                         type="password"
@@ -23,13 +23,8 @@
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" :disabled="loading">
                         <span v-show="loading" class="spinner-border spinner-border-sm"></span>
-                        <span>Login</span>
+                        <span>ログイン</span>
                     </button>
-                </div>
-                <div class="form-group">
-                    <div v-if="message" class="alert alert-danger" role="alert">
-                        {{ message }}
-                    </div>
                 </div>
             </form>
         </div>
@@ -54,7 +49,7 @@ export default {
     },
     created() {
         if (this.loggedIn) {
-            console.log('User has been logged');
+            // console.log('User has been logged');
             this.$router.push('/');
         }
     },
@@ -64,17 +59,33 @@ export default {
             if (this.user.email && this.user.password) {
                 this.$store.dispatch('auth/login', this.user).then(
                     () => {
-                        console.log('login successed');
-                        this.$router.push('/');
+                        if (this.$store.state.auth.user.role === '1') {
+                            this.$router.push('/admin');
+                        } else this.$router.push('/');
                     },
                     (error) => {
                         this.loading = false;
                         this.message =
-                            (error.response && error.response.data) ||
+                            (error.response && error.response.data.message) ||
                             error.message ||
                             error.toString();
+                        this.$bvToast.toast(this.message, {
+                            title: 'ログイン失敗',
+                            variant: 'danger',
+                            solid: true,
+                            autoHide: 2000,
+                        });
                     }
                 );
+            } else {
+                this.loading = false;
+                this.message = '無効なユーザー';
+                this.$bvToast.toast(this.message, {
+                    title: 'ログイン失敗',
+                    variant: 'danger',
+                    solid: true,
+                    autoHide: 2000,
+                });
             }
         },
     },

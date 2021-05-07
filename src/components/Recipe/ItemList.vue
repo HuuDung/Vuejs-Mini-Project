@@ -1,7 +1,12 @@
 <template>
     <div>
         <b-row>
-            <item-card v-for="recipe in recipes" :recipe="recipe" :key="recipe.id"></item-card>
+            <item-card
+                v-for="recipe in recipes"
+                :recipe="recipe"
+                :key="recipe.id"
+                @get-recipe-data="getRecipeData"
+            ></item-card>
         </b-row>
     </div>
 </template>
@@ -15,13 +20,15 @@ export default {
         return {
             recipes: [
                 {
-                    id: 1,
+                    recipeid: 434948,
                     title: 'タイトル',
-                    name: '料理dasfasdfasdfasdadfdsafasdfasdfasdfa',
-                    foods: '材料',
-                    spices: '調味料',
-                    servings: '何人前',
-                    time: '所要時間',
+                    r_name: '料理dasfasdfasdfasdadfdsafasdfasdfasdfa',
+                    material: '<p>材料</p>',
+                    spices: [1, 2],
+                    servings: 3,
+                    r_time: '11:00',
+                    r_process: '<p>process</p>',
+                    img_url: 'http://localhost:8080/images/IMG_2230.jpg',
                     liked: true,
                     myself: false,
                 },
@@ -82,6 +89,11 @@ export default {
                 },
             ],
         };
+    },
+    methods: {
+        getRecipeData(data) {
+            this.$emit('get-recipe-data', data);
+        },
     },
 };
 </script>

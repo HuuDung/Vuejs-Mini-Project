@@ -1,7 +1,9 @@
 <template>
     <div id="app">
-        <header-nav :logged="logged"></header-nav>
-        <router-view></router-view>
+        <header-nav :logged="logged" :user="user"></header-nav>
+        <div style="margin-top: 140px">
+            <router-view></router-view>
+        </div>
         <footer-nav></footer-nav>
     </div>
 </template>
@@ -17,6 +19,7 @@ export default {
     data() {
         return {
             logged: false,
+            user: {},
         };
     },
     created() {
@@ -28,12 +31,13 @@ export default {
     methods: {
         loggedIn() {
             this.logged = this.$store.state.auth.status.loggedIn;
+            this.user = this.$store.state.auth.user;
         },
     },
 };
 </script>
 <style scoped>
 #app {
-    padding-bottom: 40px;
+    padding-bottom: 80px;
 }
 </style>

@@ -5,8 +5,7 @@ import App from './App';
 import router from './router';
 import store from './store';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
-
-// Import Bootstrap an BootstrapVue CSS files (order is important)
+import { ValidationObserver, ValidationProvider } from 'vee-validate/dist/vee-validate.full';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
@@ -18,6 +17,9 @@ Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
 Vue.use(CKEditor);
+
+Vue.component('ValidationProvider', ValidationProvider);
+Vue.component('ValidationObserver', ValidationObserver);
 
 Vue.config.productionTip = false;
 /* eslint-disable no-new */

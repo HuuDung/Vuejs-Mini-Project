@@ -37,6 +37,9 @@ export const auth = {
                 }
             );
         },
+        update({ commit }) {
+            commit('updateUser');
+        },
     },
     mutations: {
         loginSuccess(state, user) {
@@ -56,6 +59,11 @@ export const auth = {
         },
         registerFailure(state) {
             state.status.loggedIn = false;
+        },
+        updateUser(state) {
+            let userData = JSON.parse(localStorage.getItem('user'));
+            state.status.loggedIn = true;
+            state.user = userData;
         },
     },
 };

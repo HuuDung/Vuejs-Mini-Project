@@ -7,51 +7,43 @@
                 class="profile-img-card"
             />
             <form name="form" @submit.prevent="handleRegister">
-                <div v-if="!successful">
+                <div>
                     <div class="form-group">
-                        <label for="username">Username</label>
+                        <label for="username">ユーザー名</label>
                         <input v-model="user.name" type="text" class="form-control" name="name" />
-                        <div v-if="submitted && errors.has('username')" class="alert-danger">
-                            {{ errors.first('username') }}
+                        <div v-if="submitted && errors.name" class="alert-danger mt-2">
+                            {{ errors.name[0] }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">メール</label>
                         <input
                             v-model="user.email"
                             type="email"
                             class="form-control"
                             name="email"
                         />
-                        <div v-if="submitted && errors.has('email')" class="alert-danger">
-                            {{ errors.first('email') }}
+                        <div v-if="submitted && errors.email" class="alert-danger mt-2">
+                            {{ errors.email[0] }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">パスワード</label>
                         <input
                             v-model="user.password"
                             type="password"
                             class="form-control"
                             name="password"
                         />
-                        <div v-if="submitted && errors.has('password')" class="alert-danger">
-                            {{ errors.first('password') }}
+                        <div v-if="submitted && errors.password" class="alert-danger mt-2">
+                            {{ errors.password[0] }}
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary btn-block">Sign Up</button>
+                        <button class="btn btn-primary btn-block">登録</button>
                     </div>
                 </div>
             </form>
-
-            <div
-                v-if="message"
-                class="alert"
-                :class="successful ? 'alert-success' : 'alert-danger'"
-            >
-                {{ message }}
-            </div>
         </div>
     </div>
 </template>
@@ -64,8 +56,12 @@ export default {
                 password: '',
             },
             submitted: false,
-            successful: false,
             message: '',
+            errors: {
+                email: [],
+                password: [],
+                name: [],
+            },
         };
     },
     computed: {
@@ -85,14 +81,20 @@ export default {
             this.$store.dispatch('auth/register', this.user).then(
                 (data) => {
                     this.message = data.message;
-                    this.successful = true;
+                    this.$router.push('/login');
                 },
                 (error) => {
                     this.message =
-                        (error.response && error.response.data) ||
+                        (error.response && error.response.data.message) ||
                         error.message ||
                         error.toString();
-                    this.successful = false;
+                    this.$bvToast.toast(this.message, {
+                        title: '登録失敗',
+                        variant: 'danger',
+                        solid: true,
+                        autoHide: 2000,
+                    });
+                    this.errors = error.response.data.errors;
                 }
             );
         },

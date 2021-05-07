@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-export default axios.create({
-    baseURL: 'http://localhost:8080/',
+const instance = axios.create({
+    baseURL: process.env.APP_BASE_URL + process.env.APP_BASE_API,
     headers: {
         'Content-type': 'application/json',
     },
 });
+
+export default instance;
